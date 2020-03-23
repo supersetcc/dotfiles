@@ -34,6 +34,7 @@ set number
 set pastetoggle=<F8>
 set relativenumber
 set clipboard=unnamed
+set bs=indent,eol,start		" allow backspaces over everything
 
 inoremap jk <esc>
 nnoremap ; :
