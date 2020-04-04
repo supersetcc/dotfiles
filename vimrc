@@ -1,6 +1,7 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'flazz/vim-colorschemes'
+Plug 'tpope/vim-fugitive'
 
 Plug 'benmills/vimux'
 
@@ -34,7 +35,26 @@ set number
 set pastetoggle=<F8>
 set relativenumber
 set clipboard=unnamed
-set bs=indent,eol,start		" allow backspaces over everything
+set bs=indent,eol,start	" allow backspaces over everything
+set noswapfile " no .swp file
+set nofixendofline
+
+set autoindent
+set expandtab
+set ts=4
+set shiftwidth=4
+set softtabstop=4
+
+" search
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+
+" do not exit from visual mode when shifting
+" " " (gv : select the preivous area)
+vnoremap < <gv
+vnoremap > >gv
 
 inoremap jk <esc>
 nnoremap ; :
@@ -42,9 +62,13 @@ nnoremap ; :
 map <leader>q <ESC><ESC>:q<CR>
 map <leader>! <ESC><ESC>:q!<CR>
 
+" <leader><space> : turn off search highlight
+nmap <leader><space> :noh<CR>
+
 " copy and paste
 noremap <leader>y "*y
 noremap <leader>p "*p
+
 
 " Vimux
 function! _nose_test_search(fragment)
@@ -68,6 +92,7 @@ function! RunNoseTestFocused()
 endfunction
 
 nmap <silent> <leader>T :VimuxRunCommand("nosetests -s ".expand("%"))<CR>
+nmap <silent> <leader>r :VimuxRunCommand("npm test ".expand("%"))<CR>
 nmap <silent> <leader>t :call RunNoseTestFocused()<CR>
 
 
