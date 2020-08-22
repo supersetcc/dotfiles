@@ -11,6 +11,9 @@ Plug 'jistr/vim-nerdtree-tabs'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+
 call plug#end()
 
 colorscheme gruvbox
@@ -46,6 +49,11 @@ set ts=4
 set shiftwidth=4
 set softtabstop=4
 
+" search
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
 
 inoremap jk <esc>
 nnoremap ; :
@@ -111,3 +119,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 " " (gv : select the preivous area)
 vnoremap < <gv
 vnoremap > >gv
+
+autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
+
+nmap <leader><space> :noh<CR>
