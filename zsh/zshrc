@@ -25,6 +25,7 @@ plugins=(
 path=(
   $path
   $HOME/.dotfiles/bin
+  $HOME/Library/Android/sdk/platform-tools
 )
 
 autoload -U promptinit; promptinit
@@ -56,10 +57,10 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 # neovim
-alias e='nvim'
-alias vi='nvim'
-alias vim='nvim'
-alias vimdiff="nvim -d"
+alias e='vim'
+#alias vi='nvim'
+#alias vim='nvim'
+#alias vimdiff="nvim -d"
 export EDITOR=/usr/local/bin/nvim
 
 export NVM_DIR="$HOME/.nvm"
