@@ -23,6 +23,8 @@ Plug 'chemzqm/vim-jsx-improve'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'jiangmiao/auto-pairs'
 
+Plug 'Vimjas/vim-python-pep8-indent'
+
 call plug#end()
 
 colorscheme gruvbox
@@ -95,8 +97,8 @@ nnoremap <Leader>a :Ags<Space>
 nnoremap <Leader><Leader>a :AgsQuit<CR>
 
 " Vimux
-function! _nose_test_search(fragment)
-  let line_num = search(a:fragment, "bs")
+function _nose_test_search(fragment)
+  let line_num = search(a:fragment, "bn") " help search()
   if line_num > 0
     return split(split(getline(line_num), " ")[1], "(")[0]
   else
