@@ -22,8 +22,11 @@ Plug 'pangloss/vim-javascript'
 Plug 'chemzqm/vim-jsx-improve'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'jiangmiao/auto-pairs'
+Plug 'b4b4r07/vim-sqlfmt'
 
 Plug 'Vimjas/vim-python-pep8-indent'
+
+Plug 'zivyangll/git-blame.vim'
 
 call plug#end()
 
@@ -31,7 +34,7 @@ colorscheme gruvbox
 
 
 " NerdTree
-let NERDTreeIgnore = ['\.pyc$']
+let NERDTreeIgnore = ['\.pyc$','\.DS_Store','\.swp$','__pycache__']
 let g:NERDTreeChDirMode = 1
 let g:nerdtree_tabs_open_on_console_startup = 1
 let g:nerdtree_tabs_open_on_gui_startup = 1
@@ -57,7 +60,7 @@ noremap <leader>w <ESC>:wa<CR>
 set number
 set pastetoggle=<F8>
 set relativenumber
-set clipboard=unnamed
+"set clipboard=unnamed      " Using the clipboard as the default register
 set bs=indent,eol,start		" allow backspaces over everything
 set autoindent
 set smartindent
@@ -91,6 +94,7 @@ noremap <leader>p "*p
 nnoremap <Leader>s :Ags<Space><C-R>=expand('<cword>')<CR><CR>
 " Search for the visually selected text
 vnoremap <Leader>s y:Ags<Space><C-R>='"' . escape(@", '"*?()[]{}.') . '"'<CR><CR>
+
 " Run Ags
 nnoremap <Leader>a :Ags<Space>
 " Quit Ags
@@ -158,3 +162,10 @@ au FileType typescript setlocal formatprg=prettier\ --parser\ typescript
 au FileType html setlocal formatprg=js-beautify\ --type\ html
 au FileType scss setlocal formatprg=prettier\ --parser\ css
 au FileType css setlocal formatprg=prettier\ --parser\ css
+
+" SQL Format
+let g:sqlfmt_command = "sqlformat"
+let g:sqlfmt_options = "-r -k upper"
+
+nnoremap <Leader>g :<C-u>call gitblame#echo()<CR>
+
