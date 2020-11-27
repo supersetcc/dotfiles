@@ -21,7 +21,6 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'pangloss/vim-javascript'
 Plug 'chemzqm/vim-jsx-improve'
 Plug 'maxmellon/vim-jsx-pretty'
-Plug 'jiangmiao/auto-pairs'
 Plug 'b4b4r07/vim-sqlfmt'
 
 Plug 'Vimjas/vim-python-pep8-indent'
@@ -55,6 +54,14 @@ nnoremap <leader>do :tabe ~/.dotfiles<CR>
 nnoremap <leader>src :source ~/.vimrc<CR>
 noremap <leader>b <ESC>:set wrap!<CR>
 noremap <leader>w <ESC>:wa<CR>
+
+function! Refresh()
+"  set noconfirm
+  execute 'silent bufdo e!' | syntax on
+"  set confirm
+endfunction
+
+noremap <leader>r :call Refresh()<CR>
 
 " Settings
 set number
@@ -123,6 +130,7 @@ endfunction
 
 nmap <silent> <leader>T :VimuxRunCommand("nosetests -s ".expand("%"))<CR>
 nmap <silent> <leader>t :call RunNoseTestFocused()<CR>
+nmap <silent> <leader>j :%!python -m json.tool<CR>
 
 nmap <leader><space> :noh<CR>
 
@@ -168,4 +176,3 @@ let g:sqlfmt_command = "sqlformat"
 let g:sqlfmt_options = "-r -k upper"
 
 nnoremap <Leader>g :<C-u>call gitblame#echo()<CR>
-

@@ -43,17 +43,17 @@ fi
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/hunjae/.pyenv/versions/anaconda3-2019.10/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/hunjae/.pyenv/versions/anaconda3-2019.10/etc/profile.d/conda.sh" ]; then
-        . "/Users/hunjae/.pyenv/versions/anaconda3-2019.10/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/hunjae/.pyenv/versions/anaconda3-2019.10/bin:$PATH"
-    fi
-fi
-unset __conda_setup
+#__conda_setup="$('/Users/hunjae/.pyenv/versions/anaconda3-2019.10/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+#if [ $? -eq 0 ]; then
+#    eval "$__conda_setup"
+#else
+#    if [ -f "/Users/hunjae/.pyenv/versions/anaconda3-2019.10/etc/profile.d/conda.sh" ]; then
+#        . "/Users/hunjae/.pyenv/versions/anaconda3-2019.10/etc/profile.d/conda.sh"
+#    else
+#        export PATH="/Users/hunjae/.pyenv/versions/anaconda3-2019.10/bin:$PATH"
+#    fi
+#fi
+#unset __conda_setup
 # <<< conda initialize <<<
 
 # neovim
@@ -74,3 +74,11 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # Added by serverless binary installer
 export PATH="$HOME/.serverless/bin:$PATH"
+
+bindkey "[D" backward-word
+bindkey "[C" forward-word
+bindkey "^[a" beginning-of-line
+bindkey "^[e" end-of-line
+
+bindkey '^[[1;3C' forward-word
+bindkey '^[[1;3D' backward-word

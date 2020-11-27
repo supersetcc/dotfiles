@@ -1,0 +1,4 @@
+function src(){
+	filename=${1:=$(date '+%Y%m%d%H%M%S')} #파일명을 인자로 주지 않을경우 현재날짜로
+  adb exec-out screencap -p > "${HOME}/Desktop/${filename}.png"
+}
