@@ -11,6 +11,8 @@ Plug 'honza/vim-snippets'
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
 
+Plug 'tpope/vim-fugitive'
+
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 
@@ -26,6 +28,9 @@ Plug 'b4b4r07/vim-sqlfmt'
 Plug 'Vimjas/vim-python-pep8-indent'
 
 Plug 'zivyangll/git-blame.vim'
+Plug 'wakatime/vim-wakatime'
+
+Plug 'mileszs/ack.vim'
 
 call plug#end()
 
@@ -45,6 +50,9 @@ map <F9> :NERDTreeToggle<CR>
 set wildmenu
 set wildmode=list:longest,full
 set wildignore=*.swp,*.swo,*.class
+set nobackup
+set nowritebackup 
+set noswapfile
 
 " Key mappings
 let mapleader=","
@@ -176,3 +184,53 @@ let g:sqlfmt_command = "sqlformat"
 let g:sqlfmt_options = "-r -k upper"
 
 nnoremap <Leader>g :<C-u>call gitblame#echo()<CR>
+
+" transparent background
+hi Normal guibg=NONE ctermbg=NONE
+
+" Go to tab by number
+noremap <leader>1 1gt
+noremap <leader>2 2gt
+noremap <leader>3 3gt
+noremap <leader>4 4gt
+noremap <leader>5 5gt
+noremap <leader>6 6gt
+noremap <leader>7 7gt
+noremap <leader>8 8gt
+noremap <leader>9 9gt
+noremap <leader>0 :tablast<cr>
+
+nnoremap <S-Tab> :tabprevious<CR>
+nnoremap <Tab> :tabnext<CR>
+
+" folding
+set nofoldenable
+nnoremap <space> za
+let $unrol=1
+function UnrolMe()
+if $unrol==0
+    :exe "normal zR"
+    let $unrol=1
+else
+    :exe "normal zM"
+    let $unrol=0
+endif
+endfunction
+nnoremap <F2> :call UnrolMe()<CR>
+
+" reload
+nnoremap <F5> :e<CR>
+
+
+" highlight
+let python_highlight_all = 1
+
+" visual multi
+let g:VM_mouse_mappings = 1
+
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+cnoreabbrev Ack Ack!
+nnoremap <Leader>a :Ack!<Space>
