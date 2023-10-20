@@ -1,3 +1,7 @@
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
+# Fig pre block. Keep at the top of this file.
+#. "$HOME/.fig/shell/zshrc.pre.zsh"
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
@@ -11,7 +15,7 @@ plugins=(
   fasd
   tmux
   tmuxinator
-  ls
+  #ls
 )
 
 # Would you like to use another custom folder than $ZSH/custom?
@@ -22,6 +26,7 @@ path=(
   $HOME/.poetry/bin
   $HOME/.pyenv/bin
   $HOME/bin
+  $HOME/opt/anaconda3/bin
   /usr/local/bin
   /usr/local/opt/ruby/bin
 )
@@ -51,15 +56,60 @@ source $ZSH/oh-my-zsh.sh
 alias e='vim'
 alias mux="tmuxinator"
 
-# pyenv 
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-
 # custom functions
 function cd {
     builtin cd "$@" && ls -1
 }
 
 # use vimode
-# bindkey -v
+#bindkey -v
+
+# vault setting
+export VAULT_ADDR="https://vault.airbridge.io"
+export VAULT_CACERT="$HOME/vault-ca.pem"
+export PATH="/usr/local/opt/llvm/bin:$PATH"
+#eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
+export PATH="/usr/local/opt/mysql-client/bin:$PATH"
+export PATH="$HOME/flutter/bin:$PATH"
+export PATH="$HOME/Dropbox/dotfiles/bin:$PATH"
+export CPPFLAGS="-I/usr/local/include -L/usr/local/lib"
+#export JAVA_HOME="$HOME/Library/Java/JavaVirtualMachines/jdk-16.0.2.jdk/Contents/Home"
+export PATH="$PATH":"$HOME/.pub-cache/bin"
+
+# pyenv 
+#
+#
+#export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+#eval "$(pyenv init -)"
+#eval "$(pyenv init --path)"
+#eval "$(pyenv virtualenv-init -)"
+
+# Added by serverless binary installer
+export PATH="$HOME/.serverless/bin:$PATH"
+
+export PATH="$HOME/.poetry/bin:$PATH"
+
+# Fig post block. Keep at the bottom of this file.
+#. "$HOME/.fig/shell/zshrc.post.zsh"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/gjswo/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/gjswo/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/gjswo/opt/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/gjswo/opt/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"

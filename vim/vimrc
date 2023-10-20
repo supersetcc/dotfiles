@@ -24,6 +24,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'chemzqm/vim-jsx-improve'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'b4b4r07/vim-sqlfmt'
+Plug 'hashivim/vim-terraform'
 
 Plug 'Vimjas/vim-python-pep8-indent'
 
@@ -31,6 +32,8 @@ Plug 'zivyangll/git-blame.vim'
 Plug 'wakatime/vim-wakatime'
 
 Plug 'mileszs/ack.vim'
+
+Plug 'junegunn/fzf'
 
 call plug#end()
 
@@ -234,3 +237,6 @@ endif
 
 cnoreabbrev Ack Ack!
 nnoremap <Leader>a :Ack!<Space>
+silent! set ideajoin
+
+set splitbelow

@@ -1,0 +1,46 @@
+#!/bin/bash
+if [ -z "$1" ]
+then
+    echo "sprint name is required."
+    exit
+fi
+
+echo "Sprint '$1' is creating.."
+sprint_name=$1
+curl -s --request POST \
+  --url 'https://teamab180.atlassian.net/rest/agile/1.0/sprint' \
+  --header 'Accept: application/json' \
+  --header 'Content-Type: application/json' \
+  --header 'authorization: Basic aHVuamFlQGFiMTgwLmNvOlJjYmVmZWxNWFZRWEpIaEc2R0lzNDQ0NA==' \
+  --data '{
+  "name": "'${sprint_name}'",
+  "originBoardId": 32
+}' | json_pp | grep id | awk -F': ' '{print $2}' | awk -F, '{print $1}' > sprintid.txt
+
+sprintid=`cat sprintid.txt`
+echo "Sprint ${sprint_name}($sprintid) is created."
+
+
+curl -s --request GET \
+  --url 'https://teamab180.atlassian.net/rest/agile/1.0/board/32/sprint?state=future,active' \
+  --header 'Accept: application/json' \
+  --header 'Content-Type: application/json' \
+  --header 'authorization: Basic aHVuamFlQGFiMTgwLmNvOlJjYmVmZWxNWFZRWEpIaEc2R0lzNDQ0NA==' | json_pp | grep id | awk -F': ' '{print $2}' | awk -F, '{print $1}' | sed '1d;$d' | tail -r > sprint_list.txt
+
+
+list="./sprint_list.txt"
+while IFS= read -r line
+do
+  echo "Swap sprint $sprintid and sprint $line.."
+  curl -s --request POST \
+    --url 'https://teamab180.atlassian.net/rest/agile/1.0/sprint/'${sprintid}'/swap' \
+    --header 'Content-Type: application/json' \
+    --header 'authorization: Basic aHVuamFlQGFiMTgwLmNvOlJjYmVmZWxNWFZRWEpIaEc2R0lzNDQ0NA==' \
+    --data '{ 
+      "sprintToSwapWith": '${line}' 
+  }'
+done < "$list"
+
+echo "Done."
+
+rm sprint*.txt
